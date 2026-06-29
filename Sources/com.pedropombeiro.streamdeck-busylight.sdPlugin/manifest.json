@@ -5,27 +5,25 @@
       "Name": "Busylight",
       "States": [
         {
-          "Image": "action/images/off-air",
-          "Name": "Off Air"
-        },
-        {
-          "Image": "action/images/on-air",
-          "Name": "On Air"
+          "Name": "Busylight",
+          "Image": "action/images/actionimage"
         }
       ],
-      "Tooltip": "Toggle the Busylight between on-air and off-air",
+      "Tooltip": "Set the Busylight to a configured color",
       "UUID": "com.pedropombeiro.streamdeck-busylight.toggle"
     }
   ],
+  "Category": "Busylight",
+  "CategoryIcon": "pluginIcon",
   "SDKVersion": 2,
-  "Author": "Pedro Pombeiro",
+  "Author": "Pedro Pombeiro / Grant Bivens",
   "CodePath": "index.html",
   "PropertyInspectorPath": "propertyinspector/index.html",
-  "Description": "Control the kuando Busylight (prerequisite: install Busylight HTTP gateway at https://www.plenom.com/download/177233/)",
+  "Description": "Control the kuando Busylight with per-button colors (prerequisite: install Busylight HTTP gateway at https://www.plenom.com/download/177233/)",
   "Name": "kuando Busylight",
   "Icon": "pluginIcon",
-  "URL": "https://gitlab.com/pedropombeiro/streamdeck-busylight",
-  "Version": "1.0.58",
+  "URL": "https://github.com/gbivens/streamdeck-busylight",
+  "Version": "1.1.0",
   "OS": [
     {
       "Platform": "mac",

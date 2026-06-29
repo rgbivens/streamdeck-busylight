@@ -1,53 +1,77 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
-        <meta name=apple-mobile-web-app-capable content=yes>
-        <meta name=apple-mobile-web-app-status-bar-style content=black>
-        <title>com.pedropombeiro.streamdeck-busylight Property Inspector</title>
-        <link rel="stylesheet" href="css/sdpi.css">
-    </head>
-    <body>
-        <div class="sdpi-wrapper">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <title>Busylight Property Inspector</title>
+    <link rel="stylesheet" href="css/sdpi.css">
+    <style>
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            padding: 4px 0;
+        }
+        .color-swatch {
+            aspect-ratio: 1;
+            border-radius: 6px;
+            border: 3px solid transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-sizing: border-box;
+            user-select: none;
+        }
+        .color-swatch[data-color="off"]     { background: #2a2a2a; color: #888; border-color: #444; }
+        .color-swatch[data-color="red"]     { background: #cc0000; color: #fff; }
+        .color-swatch[data-color="green"]   { background: #009900; color: #fff; }
+        .color-swatch[data-color="yellow"]  { background: #cccc00; color: #333; }
+        .color-swatch[data-color="blue"]    { background: #1e50cc; color: #fff; }
+        .color-swatch[data-color="magenta"] { background: #cc00cc; color: #fff; }
+        .color-swatch[data-color="cyan"]    { background: #00aacc; color: #fff; }
+        .color-swatch[data-color="white"]   { background: #dddddd; color: #333; }
+        .color-swatch[data-color="orange"]  { background: #cc6600; color: #fff; }
+        .color-swatch.selected {
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(255,255,255,0.4);
+        }
+        .color-swatch[data-color="off"].selected {
+            box-shadow: 0 0 0 2px #aaa, 0 0 0 4px rgba(170,170,170,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="sdpi-wrapper">
 
-          <!-- DROP HTML-STUFF BELOW -->
-
-          <!--
-            Here we just copied a couple of elements from the PISamples example, which contains
-            a huge collection pre-made HTML-elements for you to use.
-            Important here is (if you plan to communicate from the Property Inspector to the plugin without
-            further programming), that you add an 'id' to an element's control.
-            This will get the 'key', which is sent to the plugin (or settings), along with the value of
-            the control.
-          -->
-
-            <!-- <div class="sdpi-item">
-                <div class="sdpi-item-label">Name</div>
-                <input id="mynameinput" class="sdpi-item-value" type="text" value="" />
-             </div>
-
-            <div type="textarea" class="sdpi-item">
-                <div class="sdpi-item-label up20" data-localize="Message">Message</div>
-                <div class="sdpi-item-value textarea">
-                  <textarea type="textarea" maxlength="50" id="mymessage" class="three-lines"></textarea>
-                  <label for="mymessage">0/50</label>
-                </div>
-              </div>
-
-              <div class="sdpi-item">
-                <div class="sdpi-item-label">Button</div>
-                <button class="sdpi-item-value" id="clickme" value="Click Me" data-localize="Click me">Click Me</button>
-              </div> -->
-
-
-              <!-- END OF SDPI-WRAPPER -->
-
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">Color</div>
+            <div class="sdpi-item-value color-grid" id="colorGrid">
+                <div class="color-swatch" data-color="off">Off</div>
+                <div class="color-swatch" data-color="red">Red</div>
+                <div class="color-swatch" data-color="green">Green</div>
+                <div class="color-swatch" data-color="yellow">Yellow</div>
+                <div class="color-swatch" data-color="blue">Blue</div>
+                <div class="color-swatch" data-color="magenta">Magenta</div>
+                <div class="color-swatch" data-color="cyan">Cyan</div>
+                <div class="color-swatch" data-color="white">White</div>
+                <div class="color-swatch" data-color="orange">Orange</div>
+            </div>
         </div>
 
-        <div class="sdpi-info-label hidden" style="top: -1000;" value=""></div>
-        <script src="js/common.js"></script>
-        <script src="js/common_pi.js"></script>
-        <script src="js/index_pi.js"></script>
-    </body>
-    </html>
+        <div class="sdpi-item" type="checkbox">
+            <div class="sdpi-item-label">Blink</div>
+            <div class="sdpi-item-value">
+                <input type="checkbox" id="blinkToggle" />
+                <label for="blinkToggle"><span></span>Pulse / blink mode</label>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="js/common.js"></script>
+    <script src="js/index_pi.js"></script>
+</body>
+</html>
