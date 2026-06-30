@@ -1,14 +1,21 @@
 # Stream Deck Busylight integration
 
-The `Stream Deck Busylight` plugin integrates the Stream Deck with the [kuando Busylight](https://busylight.com/) presence indicator. It's perfect for letting your family know when you're in a Zoom call.
+The `Stream Deck Busylight` plugin integrates the Stream Deck with the [kuando Busylight](https://busylight.com/) presence indicator. It's perfect for letting your family or coworkers know when you're in available or not.
 
 `Stream Deck Busylight` requires Stream Deck 4.1 or later, as well as the official [kuando Busylight HTTP](https://www.plenom.com/download/177233/) software.
 
 # Description
 
-Currently, `Stream Deck Busylight` provides you with a single action which allows toggling the light between solid green and glowing red.
+`Stream Deck Busylight` provides a single action that toggles your Busylight on and off. When pressed, it activates the light in your chosen color; pressing again turns it off.
 
-It requires no configuration as it connects to the kuando Busylight HTTP server through the default connection parameters.
+Each button can be independently configured via the property inspector with the following options:
+
+- **Color** — choose from a 3×3 swatch grid: Off, Red, Green, Yellow, Blue, Pink, Cyan, White, and Orange
+- **Blink** — enables pulse/blink mode instead of a solid light
+- **Sound** — select one of 9 alert sounds (No Sound, Fairy Tale, Funky, Kuando Train, Open Office, Quiet, Telephone Nordic, Telephone Original, Telephone Pick Me Up). *Omega model only.*
+- **Volume** — set the alert volume to 100%, 75%, 50%, 25%, or Mute. *Omega model only.*
+
+It requires no configuration as it connects to the kuando Busylight HTTP server through the default connection parameters (`http://localhost:8989`).
 
 ## Features
 

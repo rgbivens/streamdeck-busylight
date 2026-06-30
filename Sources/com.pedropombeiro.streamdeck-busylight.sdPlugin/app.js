@@ -48,13 +48,17 @@ function detectColorName(paramJSON) {
     return { color: 'off', blink: false };
 }
 
-async function setBusylightColor(colorName, blink) {
+async function setBusylightColor(colorName, blink, sound, volume) {
     const { r, g, b } = COLORS[colorName] || COLORS.off;
-    const action = (blink && colorName !== 'off') ? 'pulse' : 'light';
+    const hasSound = sound > 0 && colorName !== 'off';
+    const action = hasSound ? 'alert' : (blink && colorName !== 'off') ? 'pulse' : 'light';
     let url = `${busylightHTTPHost}?action=${action}`;
     if (r) url += `&red=${r}`;
     if (g) url += `&green=${g}`;
     if (b) url += `&blue=${b}`;
+    if (hasSound) {
+        url += `&sound=${sound}&volume=${volume !== undefined ? volume : 75}`;
+    }
     console.log('[app.js] setBusylightColor:', url);
     return fetch(url);
 }
@@ -156,7 +160,7 @@ const action = {
     onSendToPlugin(jsn) {
         const pl = Utils.getProp(jsn, 'payload', {});
         const found = this.getContextFromCache(jsn.context);
-        if (found && (pl.color !== undefined || pl.blink !== undefined)) {
+        if (found && (pl.color !== undefined || pl.blink !== undefined || pl.sound !== undefined || pl.volume !== undefined)) {
             found.updateSettings(pl);
         }
     },
@@ -180,12 +184,16 @@ const action = {
         const isActive = watcher ? watcher.getIsActive() : false;
         const colorName = watcher ? watcher.getColor() : 'green';
         const blink = watcher ? watcher.getBlink() : false;
+        const sound = watcher ? watcher.getSound() : 0;
+        const volume = watcher ? watcher.getVolume() : 75;
 
         const targetColor = isActive ? 'off' : colorName;
         const targetBlink = isActive ? false : blink;
+        const targetSound = isActive ? 0 : sound;
+        const targetVolume = isActive ? 75 : volume;
 
         try {
-            await setBusylightColor(targetColor, targetBlink);
+            await setBusylightColor(targetColor, targetBlink, targetSound, targetVolume);
         } catch (e) {
             console.error('[app.js] setBusylightColor failed:', e);
             $SD.api.setTitle(jsn.context, 'ERROR');
@@ -211,11 +219,13 @@ const action = {
 
 function BusylightHttpWatcher(context, settings) {
     let timer = 0;
-    let currentSettings = Object.assign({ color: 'green', blink: false }, settings);
+    let currentSettings = Object.assign({ color: 'green', blink: false, sound: 0, volume: 75 }, settings);
     let isActive = false;
 
     function getColor() { return currentSettings.color || 'green'; }
     function getBlink() { return !!currentSettings.blink; }
+    function getSound() { return currentSettings.sound || 0; }
+    function getVolume() { return currentSettings.volume !== undefined ? currentSettings.volume : 75; }
     function getLabel() { return currentSettings.label || getColor().toUpperCase(); }
     function getIsActive() { return isActive; }
 
@@ -294,5 +304,5 @@ function BusylightHttpWatcher(context, settings) {
 
     start();
 
-    return { getColor, getBlink, getLabel, getIsActive, updateSettings, refreshButtonAsync, stop };
+    return { getColor, getBlink, getSound, getVolume, getLabel, getIsActive, updateSettings, refreshButtonAsync, stop };
 }
