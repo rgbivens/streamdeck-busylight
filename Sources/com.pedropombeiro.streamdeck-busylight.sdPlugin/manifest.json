@@ -13,7 +13,7 @@
       "UUID": "com.pedropombeiro.streamdeck-busylight.toggle"
     }
   ],
-  "Category": "Busylight",
+  "Category": "kuando Busylight",
   "CategoryIcon": "pluginIcon",
   "SDKVersion": 2,
   "Author": "Pedro Pombeiro / Grant Bivens",
@@ -22,8 +22,9 @@
   "Description": "Control the kuando Busylight with per-button colors (prerequisite: install Busylight HTTP gateway at https://www.plenom.com/download/177233/)",
   "Name": "kuando Busylight",
   "Icon": "pluginIcon",
-  "URL": "https://github.com/gbivens/streamdeck-busylight",
-  "Version": "1.1.0",
+  "URL": "https://github.com/rgbivens/streamdeck-busylight",
+  "UUID": "com.pedropombeiro.streamdeck-busylight",
+  "Version": "1.0.60.28",
   "OS": [
     {
       "Platform": "mac",
@@ -35,7 +36,7 @@
     }
   ],
   "Software": {
-    "MinimumVersion": "4.1"
+    "MinimumVersion": "6.4"
   },
   "ApplicationsToMonitor": {
     "mac": [
