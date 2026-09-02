@@ -1,110 +1,79 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
-    <title>Busylight Property Inspector</title>
-    <link rel="stylesheet" href="css/sdpi.css">
-    <style>
-        .color-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
-            padding: 4px 0;
-        }
-        .color-swatch {
-            aspect-ratio: 1;
-            border-radius: 6px;
-            border: 3px solid transparent;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 9px;
-            font-weight: bold;
-            text-transform: uppercase;
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
+        <meta name=apple-mobile-web-app-capable content=yes>
+        <meta name=apple-mobile-web-app-status-bar-style content=black>
+        <title>com.pedropombeiro.streamdeck-busylight Property Inspector</title>
+        <link rel="stylesheet" href="css/sdpi.css">
+        <style>
+          .sdpi-item-label {
+            width: 90px;
+            transform: none;
+          }
+
+          .sdpi-item > select.sdpi-item-value {
             box-sizing: border-box;
-            user-select: none;
-        }
-        .color-swatch[data-color="off"]     { background: #2a2a2a; color: #888; border-color: #444; }
-        .color-swatch[data-color="red"]     { background: #cc0000; color: #fff; }
-        .color-swatch[data-color="green"]   { background: #009900; color: #fff; }
-        .color-swatch[data-color="yellow"]  { background: #cccc00; color: #333; }
-        .color-swatch[data-color="blue"]    { background: #1e50cc; color: #fff; }
-        .color-swatch[data-color="magenta"] { background: #cc00cc; color: #fff; }
-        .color-swatch[data-color="cyan"]    { background: #00aacc; color: #fff; }
-        .color-swatch[data-color="white"]   { background: #dddddd; color: #333; }
-        .color-swatch[data-color="orange"]  { background: #cc6600; color: #fff; }
-        .color-swatch.selected {
-            box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(255,255,255,0.4);
-        }
-        .color-swatch[data-color="off"].selected {
-            box-shadow: 0 0 0 2px #aaa, 0 0 0 4px rgba(170,170,170,0.3);
-        }
-    </style>
-</head>
-<body>
-    <div class="sdpi-wrapper">
-
-        <div class="sdpi-item">
+            flex: 0 0 calc(var(--sdpi-width) + 16px);
+            width: calc(var(--sdpi-width) + 16px);
+            margin-left: 5px;
+            margin-right: 14px;
+          }
+        </style>
+    </head>
+    <body>
+        <div class="sdpi-wrapper">
+          <div class="sdpi-item">
             <div class="sdpi-item-label">Color</div>
-            <div class="sdpi-item-value color-grid" id="colorGrid">
-                <div class="color-swatch" data-color="off">Off</div>
-                <div class="color-swatch" data-color="red">Red</div>
-                <div class="color-swatch" data-color="green">Green</div>
-                <div class="color-swatch" data-color="yellow">Yellow</div>
-                <div class="color-swatch" data-color="blue">Blue</div>
-                <div class="color-swatch" data-color="magenta">Pink</div>
-                <div class="color-swatch" data-color="cyan">Cyan</div>
-                <div class="color-swatch" data-color="white">White</div>
-                <div class="color-swatch" data-color="orange">Orange</div>
-            </div>
-        </div>
-
-        <div class="sdpi-item" type="checkbox">
+              <select class="sdpi-item-value select" id="colorSelect">
+                <option value="off">Off</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="yellow">Yellow</option>
+                <option value="blue">Blue</option>
+                <option value="magenta">Pink</option>
+                <option value="cyan">Cyan</option>
+                <option value="white">White</option>
+                <option value="orange">Orange</option>
+              </select>
+          </div>
+          <div class="sdpi-item" type="checkbox">
             <div class="sdpi-item-label">Blink</div>
             <div class="sdpi-item-value">
-                <input type="checkbox" id="blinkToggle" />
-                <label for="blinkToggle"><span></span>Pulse / blink mode</label>
+              <input type="checkbox" id="blinkToggle" />
+              <label for="blinkToggle"><span></span>Pulse / blink mode</label>
             </div>
-        </div>
-
-        <div class="sdpi-item sdpi-item-group">
-            <div class="sdpi-item-value" style="font-size:11px; color:#888; padding: 4px 0 2px;">Sound settings only apply to the Omega model</div>
-        </div>
-
-        <div class="sdpi-item">
+          </div>
+          <div class="sdpi-item">
             <div class="sdpi-item-label">Sound</div>
-            <div class="sdpi-item-value">
-                <select id="soundSelect">
-                    <option value="0">No Sound</option>
-                    <option value="1">Fairy Tale</option>
-                    <option value="2">Funky</option>
-                    <option value="3">Kuando Train</option>
-                    <option value="4">Open Office</option>
-                    <option value="5">Quiet</option>
-                    <option value="6">Telephone Nordic</option>
-                    <option value="7">Telephone Original</option>
-                    <option value="8">Telephone Pick Me Up</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="sdpi-item">
+              <select class="sdpi-item-value select" id="soundSelect">
+                <option value="0">No Sound</option>
+                <option value="1">Fairy Tale</option>
+                <option value="2">Funky</option>
+                <option value="3">Kuando Train</option>
+                <option value="4">Open Office</option>
+                <option value="5">Quiet</option>
+                <option value="6">Telephone Nordic</option>
+                <option value="7">Telephone Original</option>
+                <option value="8">Telephone Pick Me Up</option>
+              </select>
+          </div>
+          <div class="sdpi-item">
             <div class="sdpi-item-label">Volume</div>
-            <div class="sdpi-item-value">
-                <select id="volumeSelect">
-                    <option value="100">100%</option>
-                    <option value="75">75%</option>
-                    <option value="50">50%</option>
-                    <option value="25">25%</option>
-                    <option value="0">Mute</option>
-                </select>
-            </div>
+              <select class="sdpi-item-value select" id="volumeSelect">
+                <option value="100">100%</option>
+                <option value="75">75%</option>
+                <option value="50">50%</option>
+                <option value="25">25%</option>
+                <option value="0">Mute</option>
+              </select>
+          </div>
+
         </div>
 
-    </div>
-    <script src="js/common.js"></script>
-    <script src="js/index_pi.js"></script>
-</body>
-</html>
+        <div class="sdpi-info-label hidden" style="top: -1000;" value=""></div>
+        <script src="js/common.js"></script>
+        <script src="js/index_pi.js"></script>
+    </body>
+    </html>

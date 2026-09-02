@@ -29,6 +29,20 @@ It requires no configuration as it connects to the kuando Busylight HTTP server 
 
 Download the [latest release](https://gitlab.com/pedropombeiro/streamdeck-busylight/-/releases) and double-click the `.streamDeckPlugin` file, or [install](streamdeck://plugin/install/com.pedropombeiro.streamdeck-busylight) from the Elgato Store directly.
 
+## Development
+
+The Makefile uses Elgato's official `@elgato/cli` package to package the plugin. Node.js and npm are required.
+
+Install the CLI with:
+
+```sh
+make setup
+```
+
+Create a release package with `make release`. This increments the patch version in the manifest, runs `streamdeck pack`, writes the `.streamDeckPlugin` file to `Release/`, and commits the generated changes. Use `make install` to create the package and open it in Stream Deck.
+
+The Makefile uses `streamdeck` by default. Set `STREAMDECK` to override the executable path, for example: `make STREAMDECK=/path/to/streamdeck release`.
+
 ## Demo
 
 [YouTube video](https://youtu.be/fgxbG2PBowo) - remember to turn on subtitles for description of what's going on. The Busylight action is located on the second row from the top, third column from the right.
